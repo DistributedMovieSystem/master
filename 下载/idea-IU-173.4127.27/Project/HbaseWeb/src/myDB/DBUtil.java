@@ -1,5 +1,6 @@
 package myDB;
 import java.io.IOException;
+import java.util.*;
 
 import myBean.Movie;
 import org.apache.hadoop.conf.Configurable;
@@ -63,5 +64,41 @@ public class DBUtil {
 
 
         return m;
+    }
+
+    public static List<Movie> getMovieList() throws Exception{
+        List<Movie> movies = new ArrayList<Movie>();
+        Movie m = null;
+        Configuration conf=HBaseConfiguration.create();
+        HTable table=new HTable(conf,"movie");
+
+        // Getting the scan result
+        ResultScanner scanner = table.getScanner(new Scan());
+
+        // Reading values from scan result
+        for (Result result = scanner.next(); result != null; result = scanner.next()) {
+            byte[] b_id = result.getRow();
+            byte[] b_name = result.getValue(Bytes.toBytes("movie_info"), Bytes.toBytes("m_name"));
+            byte[] b_post_url = result.getValue(Bytes.toBytes("movie_info"), Bytes.toBytes("post_url"));
+            byte[] b_summary = result.getValue(Bytes.toBytes("movie_info"), Bytes.toBytes("summary"));
+
+            String m_id = Bytes.toString(b_id);
+            String m_name = Bytes.toString(b_name);
+            String post_url = Bytes.toString(b_post_url);
+            String summary = Bytes.toString(b_summary);
+
+            m = new Movie();
+            m.setM_id(m_id);
+            m.setM_name(m_name);
+            m.setPost_url(post_url);
+            m.setSummary(summary);
+
+            movies.add(m)
+        }
+
+        //closing the scanner
+        scanner.close();
+
+        return movies;
     }
 }

@@ -1,10 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: zhangxinlei
-  Date: 17-12-31
-  Time: 上午6:07
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="myBean.Movie" %>
+<%@ page import="java.util.*" %>
+<%@ page import="sun.net.httpserver.HttpServerImpl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -12,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 
-    <title>Movie Review | Review</title>
+    <title>Movie Review</title>
 
     <!-- Loading third party fonts -->
     <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
@@ -38,19 +34,15 @@
             <a href="index.jsp" id="branding">
                 <img src="images/logo.png" alt="" class="logo">
                 <div class="logo-copy">
-                    <h1 class="site-title">Company Name</h1>
-                    <small class="site-description">Tagline goes here</small>
+                    <h1 class="site-title">Movie Review</h1>
+                    <small class="site-description">Find movies for you</small>
                 </div>
             </a> <!-- #branding -->
 
             <div class="main-navigation">
                 <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                 <ul class="menu">
-                    <li class="menu-item"><a href="index.jsp">Home</a></li>
-                    <li class="menu-item"><a href="about.jsp">About</a></li>
                     <li class="menu-item current-menu-item"><a href="review.jsp">Movie reviews</a></li>
-                    <li class="menu-item"><a href="joinus.jsp">Join us</a></li>
-                    <li class="menu-item"><a href="contact.jsp">Contact</a></li>
                 </ul> <!-- .menu -->
 
                 <form action="#" class="search-form">
@@ -66,65 +58,40 @@
         <div class="container">
             <div class="page">
                 <div class="breadcrumbs">
-                    <a href="index.jsp">Home</a>
-                    <span>Movie Review</span>
+                    <a href="review.jsp">Movie Review</a>
+                    <span>Home</span>
                 </div>
 
                 <div class="filters">
-                    <select name="#" id="#" placeholder="Choose Category">
-                        <option value="#">Action</option>
-                        <option value="#">Drama</option>
-                        <option value="#">Fantasy</option>
-                        <option value="#">Horror</option>
-                        <option value="#">Adventure</option>
+                    <select name="type" id="type" placeholder="Choose Category">
+                        <option value="#">剧情</option>
+                        <option value="#">爱情</option>
+                        <option value="#">科幻</option>
+                        <option value="#">冒险</option>
+                        <option value="#">动作</option>
+                        <option value="#">喜剧</option>
                     </select>
-                    <select name="#" id="#">
-                        <option value="#">2012</option>
-                        <option value="#">2013</option>
-                        <option value="#">2014</option>
+                    <select name="year" id="year">
+                        <option value="#">2017</option>
+                        <option value="#">2016</option>
+                        <option value="#">2015</option>
                     </select>
                 </div>
                 <div class="movie-list">
+                    <%
+                        List<Movie> movies = new ArrayList<Movie>();
+                        movies =(List<Movie>)session.getAttribute("movie");
+                        if (movies != null) {
+                            Movie m = new Movie();
+                            for (int i = 0; i < movies.size(); i++) {
+                                m = movies.get(i);
+                    %>
                     <div class="movie">
-                        <figure class="movie-poster"><img src="dummy/thumb-3.jpg" alt="#"></figure>
-                        <div class="movie-title"><a href="single.jsp">Maleficient</a></div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
+                        <figure class="movie-poster"><img src=<%=m.getPost_url()%> alt="#"></figure>
+                        <div class="movie-title"><a href="single.jsp"><%=m.getM_name()%></a></div>
+                        <p><%=m.getSummary()%></p>
                     </div>
-                    <div class="movie">
-                        <figure class="movie-poster"><img src="dummy/thumb-4.jpg" alt="#"></figure>
-                        <div class="movie-title"><a href="single.jsp">The adventure of Tintin</a></div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-                    </div>
-                    <div class="movie">
-                        <figure class="movie-poster"><img src="dummy/thumb-5.jpg" alt="#"></figure>
-                        <div class="movie-title"><a href="single.jsp">Hobbit</a></div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-                    </div>
-                    <div class="movie">
-                        <figure class="movie-poster"><img src="dummy/thumb-6.jpg" alt="#"></figure>
-                        <div class="movie-title"><a href="single.jsp">Exists</a></div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-                    </div>
-                    <div class="movie">
-                        <figure class="movie-poster"><img src="dummy/thumb-1.jpg" alt="#"></figure>
-                        <div class="movie-title"><a href="single.jsp">Drive hard</a></div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-                    </div>
-                    <div class="movie">
-                        <figure class="movie-poster"><img src="dummy/thumb-2.jpg" alt="#"></figure>
-                        <div class="movie-title"><a href="single.jsp">Robocop</a></div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-                    </div>
-                    <div class="movie">
-                        <figure class="movie-poster"><img src="dummy/thumb-7.jpg" alt="#"></figure>
-                        <div class="movie-title"><a href="single.jsp">Life of Pi</a></div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-                    </div>
-                    <div class="movie">
-                        <figure class="movie-poster"><img src="dummy/thumb-8.jpg" alt="#"></figure>
-                        <div class="movie-title"><a href="single.jsp">The Colony</a></div>
-                        <p>Sed ut perspiciatis unde omnis iste natus error voluptatem doloremque.</p>
-                    </div>
+                    <%}} %>
                 </div> <!-- .movie-list -->
 
                 <div class="pagination">
@@ -139,73 +106,7 @@
             </div>
         </div> <!-- .container -->
     </main>
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="widget">
-                        <h3 class="widget-title">About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia tempore vitae mollitia nesciunt saepe cupiditate</p>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="widget">
-                        <h3 class="widget-title">Recent Review</h3>
-                        <ul class="no-bullet">
-                            <li>Lorem ipsum dolor</li>
-                            <li>Sit amet consecture</li>
-                            <li>Dolorem respequem</li>
-                            <li>Invenore veritae</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="widget">
-                        <h3 class="widget-title">Help Center</h3>
-                        <ul class="no-bullet">
-                            <li>Lorem ipsum dolor</li>
-                            <li>Sit amet consecture</li>
-                            <li>Dolorem respequem</li>
-                            <li>Invenore veritae</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="widget">
-                        <h3 class="widget-title">Join Us</h3>
-                        <ul class="no-bullet">
-                            <li>Lorem ipsum dolor</li>
-                            <li>Sit amet consecture</li>
-                            <li>Dolorem respequem</li>
-                            <li>Invenore veritae</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="widget">
-                        <h3 class="widget-title">Social Media</h3>
-                        <ul class="no-bullet">
-                            <li>Facebook</li>
-                            <li>Twitter</li>
-                            <li>Google+</li>
-                            <li>Pinterest</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="widget">
-                        <h3 class="widget-title">Newsletter</h3>
-                        <form action="#" class="subscribe-form">
-                            <input type="text" placeholder="Email Address">
-                        </form>
-                    </div>
-                </div>
-            </div> <!-- .row -->
 
-            <div class="colophon">Copyright 2014 Company name, Designed by Themezy. All rights reserved</div>
-        </div> <!-- .container -->
-
-    </footer>
 </div>
 <!-- Default snippet for navigation -->
 
