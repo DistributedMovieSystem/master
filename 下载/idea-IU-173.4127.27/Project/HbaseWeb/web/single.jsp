@@ -86,7 +86,7 @@
                             </div>
                             <ul class="movie-meta">
                                 <li><strong>Rating:</strong>
-                                    <div class="star-rating" title="Rated 4.00 out of 5"><span style="width:80%"><strong class="rating">4.00</strong> out of 5</span></div>
+                                    <div class="star-rating" title="Rated 4.00 out of 5"><span style="width:80%"><strong class="rating">5.00</strong> out of 5</span></div>
                                 </li>
                                 <li><strong>Length:</strong> 98 min</li>
                                 <li><strong>Premiere:</strong> 22 March 2013 (USA)</li>
