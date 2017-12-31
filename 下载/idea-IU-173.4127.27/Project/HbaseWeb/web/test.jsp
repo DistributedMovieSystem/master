@@ -11,6 +11,9 @@
     <title>Title</title>
 </head>
 <body>
+<input type="text" id="num">
 <a href="/myServlet/DetailServlet?m_id=15633">点我点我</a>
+
+
 </body>
 </html>

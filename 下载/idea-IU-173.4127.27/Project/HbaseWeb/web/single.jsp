@@ -1,4 +1,5 @@
-<%--
+<%@ page import="myBean.Movie" %>
+<%@ page import="sun.net.httpserver.HttpServerImpl" %><%--
   Created by IntelliJ IDEA.
   User: zhangxinlei
   Date: 17-12-31
@@ -24,12 +25,19 @@
     <!--[if lt IE 9]>
     <script src="js/ie-support/html5.js"></script>
     <script src="js/ie-support/respond.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <![endif]-->
 
 </head>
 
 
 <body>
+
+<%
+    Movie m=(Movie)session.getAttribute("movie");
+
+
+%>
 
 
 <div id="site-content">
@@ -75,30 +83,38 @@
                 <div class="content">
                     <div class="row">
                         <div class="col-md-6">
-                            <figure class="movie-poster"><img src="dummy/single-image.jpg" alt="#"></figure>
+                            <figure class="movie-poster"><img src=<%=m.getPost_url()%> alt="#"></figure>
                         </div>
                         <div class="col-md-6">
-                            <h2 class="movie-title">The Croods</h2>
+                            <h2 class="movie-title"><%=m.getM_name()%></h2>
                             <div class="movie-summary">
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
-
-                                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit sed.</p>
+                                <p><%=m.getSummary()%></p>
                             </div>
                             <ul class="movie-meta">
-                                <li><strong>Rating:</strong>
+                                <li><strong>Rating:</strong> <%=m.getRating()%>/100</li>
+                                <!-- <li><strong>Rating:</strong>
+                                     <div class="star-rating" title="Rated 4.00 out of 5"><span style="width:80%"><strong class="rating">5.00</strong> out of 5</span></div>
+                                 </li>-->
+                                <!-- <li><strong>Length:</strong> 98 min</li>-->
+
+
+                                <li><strong>Rating:</strong> <%=m.getRating()%>/100</li>
+                               <!-- <li><strong>Rating:</strong>
                                     <div class="star-rating" title="Rated 4.00 out of 5"><span style="width:80%"><strong class="rating">5.00</strong> out of 5</span></div>
-                                </li>
-                                <li><strong>Length:</strong> 98 min</li>
-                                <li><strong>Premiere:</strong> 22 March 2013 (USA)</li>
-                                <li><strong>Category:</strong> Animation/Adventure/Comedy</li>
+                                </li>-->
+                                <!--<li><strong>Length:</strong> 98 min</li>-->
+                                <li><strong>Premiere:</strong> <%=m.getM_country()%></li>
+                                <li><strong>Category:</strong> <%=m.getM_type()%></li>
+                                <li><strong>Year:</strong> <%=m.getM_year()%></li>
                             </ul>
 
-                            <ul class="starring">
+                           <!-- <ul class="starring">
                                 <li><strong>Directors:</strong> Kirk de Mico (as Kirk DeMico). Chris Sanders</li>
                                 <li><strong>Writers:</strong> Chris Sanders (screenplay), Kirk De Micco (screenplay)</li>
                                 <li><strong>Stars:</strong> Nicolas Cage, Ryan Reynolds, Emma Stone</li>
-                            </ul>
+                            </ul> -->
                         </div>
+
                     </div> <!-- .row -->
                     <div class="entry-content">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac pharetra libero. Integer in suscipit diam, sit amet eleifend nunc. Curabitur egestas nunc nulla, in aliquet risus efficitur quis. Vivamus facilisis est libero, vitae iaculis nulla cursus in. Suspendisse potenti. In et fringilla ipsum, quis varius quam. Morbi eleifend venenatis diam finibus vehicula. Suspendisse eu blandit metus. Sed feugiat pellentesque turpis, in lacinia ipsum. Vivamus nec luctus orci.</p>

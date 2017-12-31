@@ -23,6 +23,7 @@ public class DBUtil {
 
         Result result=table.get(g);
 
+
         byte[] b_name=result.getValue(Bytes.toBytes("movie_info"),Bytes.toBytes("m_name"));
         byte[] b_type=result.getValue(Bytes.toBytes("movie_info"),Bytes.toBytes("m_type"));
         byte[] b_country=result.getValue(Bytes.toBytes("movie_info"),Bytes.toBytes("m_country"));
@@ -48,6 +49,7 @@ public class DBUtil {
         String good_count=Bytes.toString(b_good_count);
 
         Movie m=new Movie();
+        m.setM_id(id);
         m.setM_name(m_name);
         m.setM_type(m_type);
         m.setM_country(m_country);
